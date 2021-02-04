@@ -1,4 +1,4 @@
-package aed.accesoficheros;
+package aed.redis;
 
 import java.io.IOException;
 import java.net.URL;

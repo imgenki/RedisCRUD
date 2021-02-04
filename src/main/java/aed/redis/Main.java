@@ -1,4 +1,4 @@
-package aed.accesoficheros;
+package aed.redis;
 
 public class Main {
 
