@@ -1,4 +1,4 @@
-package aed.redis;
+package aed.redisCRUD;
 
 public class Main {
 

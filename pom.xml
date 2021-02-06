@@ -5,17 +5,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>aed</groupId>
-	<artifactId>AccesoFicheros</artifactId>
+	<artifactId>RedisCRUD</artifactId>
 	<version>1.0.0</version>
 
-	<name>AccesoFicheros</name>
+	<name>RedisCRUD</name>
 	<description>Proyecto de acceso a ficheros</description>
 
 	<properties>
 		<maven.compiler.target>14</maven.compiler.target>
 		<maven.compiler.source>14</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<exec.mainClass>dad.javafx.micv.Main</exec.mainClass>
+		<exec.mainClass>aed.redisCRUD.Main</exec.mainClass>
 	</properties>
 	<dependencies>
 		<dependency>
