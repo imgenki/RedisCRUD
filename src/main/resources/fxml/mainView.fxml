@@ -27,7 +27,9 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <ListView fx:id="usersListShow" layoutX="219.0" layoutY="76.0" prefHeight="200.0" prefWidth="454.0" />
+            <ListView fx:id="usersListShow" layoutX="219.0" layoutY="56.0" prefHeight="200.0" prefWidth="454.0" />
+            <Label layoutX="388.0" layoutY="263.0" text="Número de registros: " />
+            <Label fx:id="numeroLabel" layoutX="504.0" layoutY="263.0" text="0" />
          </children>
       </AnchorPane>
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE">

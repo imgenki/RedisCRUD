@@ -5,7 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,12 +17,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.NumberStringConverter;
 import redis.clients.jedis.*;
 
 public class MainController implements Initializable {
@@ -95,6 +99,9 @@ public class MainController implements Initializable {
 
 	@FXML
 	private Button eliminarButton;
+	
+	@FXML
+	private Label numeroLabel;
 	// Threadsafe pool of network connections
 	JedisPool pool;
 
@@ -103,6 +110,7 @@ public class MainController implements Initializable {
 
 	private ListProperty<Usuario> usuariosInfo = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ListProperty<String> usuarios = new SimpleListProperty<>(FXCollections.observableArrayList());
+	private IntegerProperty numUsuarios = new SimpleIntegerProperty();
 
 	public MainController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
@@ -147,6 +155,9 @@ public class MainController implements Initializable {
 			user.setNombreUsuario(usrName);
 			usuariosInfo.add(user);
 		}
+		numeroLabel.textProperty().bindBidirectional(numUsuarios, new NumberStringConverter());
+		
+		numUsuarios.set(jedis.smembers("users").size());
 		usersListShow.itemsProperty().bind(usuarios);
 		// userTable.itemsProperty().bind(usuariosInfo);
 		eliminarButton.disableProperty().bind(Bindings.isEmpty(usersListShow.getSelectionModel().getSelectedItems()));
@@ -198,6 +209,7 @@ public class MainController implements Initializable {
 			user.setNombreUsuario(usrName);
 			usuariosInfo.add(user);
 		}
+		numUsuarios.set(jedis.smembers("users").size());
 	}
 
 	@FXML
@@ -227,6 +239,7 @@ public class MainController implements Initializable {
 		contrasenaText.clear();
 		nacionalidadText.clear();
 
+		numUsuarios.set(jedis.smembers("users").size());
 	}
 
 	@FXML
@@ -246,6 +259,8 @@ public class MainController implements Initializable {
 			user.setNombreUsuario(usrName);
 			usuariosInfo.add(user);
 		}
+		
+		numUsuarios.set(jedis.smembers("users").size());
 	}
 
 	public Jedis getConnection() {
