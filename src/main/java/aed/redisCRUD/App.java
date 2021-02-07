@@ -20,8 +20,8 @@ public class App extends Application {
 		Scene escena = new Scene(controller.getView());
 		
 		primaryStage.setScene(escena);
-		primaryStage.setTitle("Acceso a ficheros - Sergio Rodríguez Rodríguez");
-		primaryStage.getIcons().add(new Image("/images/open-16x16.png"));
+		primaryStage.setTitle("Redis CRUD");
+		primaryStage.getIcons().add(new Image("/images/database.png"));
 		primaryStage.show();
 	}
 	
