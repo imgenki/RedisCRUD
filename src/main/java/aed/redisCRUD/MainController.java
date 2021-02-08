@@ -191,6 +191,9 @@ public class MainController implements Initializable {
 
 	@FXML
 	void onActualizarAction(ActionEvent event) {
+		if(!jedis.sismember("users", usuarioText1.textProperty().get()))
+			jedis.srem("users", usersListShow.getSelectionModel()
+							.selectedItemProperty().get());
 		jedis.sadd("users", usuarioText1.textProperty().get());
 		jedis.hset(usuarioText1.textProperty().get(), "email", emailText1.textProperty().get());
 		jedis.hset(usuarioText1.textProperty().get(), "nombre", nombreText1.textProperty().get());
